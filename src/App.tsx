@@ -1,26 +1,33 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { ReactElement } from 'react';
 import './App.css';
+import Example from './library/Example';
 
-const App: React.FC = () => {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+
+interface Home {
+    render(): ReactElement;
+    setup(): ReactElement;
 }
+
+class App extends React.Component implements Home {
+
+    constructor(props: any) {
+        super(props);
+    }
+
+    setup(): ReactElement {
+        return <Example />;
+    }
+
+    render(): ReactElement {
+        return (
+            <div className="wrap">
+                {this.setup()}
+            </div>
+        );
+    }
+
+}
+
 
 export default App;
